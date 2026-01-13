@@ -5,7 +5,7 @@ from src.helpers.extract_title import extract_title
 from src.helpers.create_content_site import create_content_site
 
 
-basepath = sys.argv[0]
+basepath = sys.argv
 dir_path_docs = "./docs"
 dir_path_content = "./content"
 template_path = "./template.html"
