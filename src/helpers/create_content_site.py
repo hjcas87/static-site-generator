@@ -2,12 +2,12 @@ import os
 import shutil
 
 
-def create_content_site():
-    if os.path.exists("public"):
-        shutil.rmtree("public")
-    os.mkdir("public")
+def create_content_site(dir_path_docs):
+    if os.path.exists(dir_path_docs):
+        shutil.rmtree(dir_path_docs)
+    os.mkdir(dir_path_docs)
     if os.path.exists("static"):
-        r_static_gen("static", "public")
+        r_static_gen("static", dir_path_docs)
 
 
 def r_static_gen(src_dir_path: str, dest_dir_path: str):

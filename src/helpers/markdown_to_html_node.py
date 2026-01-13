@@ -46,14 +46,19 @@ def markdown_to_html_node(markdown: str):
             for line in lines:
                 if line.strip() == "":
                     continue
-                if line.startswith("> "):
-                    clean_lines.append(line[2:])
-                else:
-                    clean_lines.append(line)
-            text_clean = "\n".join(clean_lines)
+                stripped = line.lstrip()
+                if stripped.startswith(">"):
+                    stripped = stripped[1:]
+                    if stripped.startswith(" "):
+                        stripped = stripped[1:]
+                clean_lines.append(stripped)
+
+            text_clean = " ".join(clean_lines)
             text_nodes = text_to_textnodes(text_clean)
+            children = []
             for node in text_nodes:
                 children.append(text_node_to_html_node(node))
+
             b = ParentNode("blockquote", children)
             new_nodes.append(b)
         elif block_type == BlockType.UNORDERED_LIST:
